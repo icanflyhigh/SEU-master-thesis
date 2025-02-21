@@ -47,13 +47,14 @@
 %%                          Font and Font Size
 %% ----------------------------------------------------------------------------
 
-%% Font
+%% Font\dfrac{分子}{分母}
 \RequirePackage[font=small]{caption}
 \setmainfont[Mapping=tex-text]{Times New Roman}
 \renewcommand{\cftchapleader}{\bfseries\cftdotfill{\cftdotsep}}
 \newcommand{\cmufont}{\fontspec{CMU Serif}}
-%\newcommand{\codefont}{\fontspec{Consolas}}                %% Microsoft Windows
-\newcommand{\codefont}{\fontspec{Ubuntu Mono}}              %% Ubuntu GNU/Linux
+\newcommand{\codefont}{\fontspec{Consolas}}                %% Microsoft Windows
+%\newcommand{\codefont}{\fontspec{Ubuntu Mono}}              %% Ubuntu GNU/Linux
+
 
 %% Font size
 \newcommand{\chuhao}{\fontsize{42bp}{46bp}\selectfont}
@@ -181,11 +182,14 @@
 \captionsetup[table]{labelsep=space}
 \captionsetup[figure]{labelsep=space}
 \RequirePackage{graphicx}
+\newcommand{\xunderline}[2][1pt]{\underline{\hspace{#1}\rule[-0.3ex]{0.5pt}{1pt}\hspace{#1}}}
 \RequirePackage{booktabs}
 \renewcommand{\toprule}{\specialrule{.08em}{0pt}{.5ex}}
 \renewcommand{\midrule}{\specialrule{.03em}{.5ex}{.5ex}}
 \renewcommand{\bottomrule}{\specialrule{.08em}{.5ex}{0pt}}
 \RequirePackage{subfig}
+\RequirePackage{ulem}
+
 
 %% ----------------------------------------------------------------------------
 %%                         Reference Hyper-links
@@ -447,18 +451,18 @@
     %% Thesis name
     \begin{picture}(0,0)
         \ifengineer
-            \put(23,-7.5){\includegraphics[scale=0.32]{figures/defined/master-engineer.png}}
+            \put(22,-8.5){\includegraphics[scale=0.65]{figures/defined/master-engineer.png}}
         \else
             \put(24.2,-7.5){\includegraphics[scale=0.32]{figures/defined/master.png}}
         \fi
     \end{picture}
 
     %% Southeast University badge
-    \begin{picture}(0,0)
-        \put(35,2){
-            \includegraphics[width=2.15cm]{figures/defined/seu-color-logo.png}
-        }
-    \end{picture}
+%    \begin{picture}(0,0)
+%        \put(35,2){
+%            \includegraphics[width=2.15cm]{figures/defined/seu-color-logo.png}
+%        }
+%    \end{picture}
 
     %% Back cover
     \begin{picture}(0,0)
@@ -486,7 +490,7 @@
 
     %% Thesis title
     \ifengineer
-        \vspace*{5.7cm}
+        \vspace*{7.7cm}
     \else
         \vspace*{6.0cm}
     \fi
@@ -495,7 +499,7 @@
         \begin{center}
             \linespread{1.25}
             \erhao\heiti\@title\\
-            \erhao\heiti\@subtitle\\
+%            \erhao\heiti\@subtitle\\
         \end{center}
     \end{minipage}
 
@@ -505,14 +509,15 @@
         \hspace*{21cm}
         \begin{minipage}{16cm}
             \begin{center}
-                \sihao\bfseries
-                (\engthesistypepre\@engthesistype)
+%                \sihao\bfseries
+				 {\sanhao\fontspec{华文中宋}
+                (\engthesistypepre\@engthesistype)}
             \end{center}
         \end{minipage}
     \else
     \fi
 
-    %% Thesis author and advisor
+    %% Thesis author and advisor 
     \ifengineer
         \vspace*{0.4cm}
     \else
@@ -525,15 +530,15 @@
             \renewcommand{\arraystretch}{2.0}
             \begin{tabular}{cr}
                 \makebox[3.5cm][s]{\xiaoerhao\songti\authorpre: } &
-                \underline{\makebox[6cm][s]{
+                \underline{{\makebox[6cm][s]{
                     \hspace*{1.7cm}
-                    \makebox[2.5cm][c]{\xiaoerhao\heiti\@author}
+                    \makebox[2.5cm][c]{\xiaoerhao\heiti\textbf\@author}
                     \makebox[2cm][r]{}}
-                } \\
+                }}\\
                 \makebox[3.5cm][s]{\xiaoerhao\songti\advisorpre: } &
                 \underline{\makebox[6cm][s]{
                     \hspace*{1.7cm}
-                    \makebox[2.5cm][c]{\xiaoerhao\heiti\@advisorname}
+                    \makebox[2.5cm][c]{\xiaoerhao\heiti{\@advisorname}}
                     \makebox[2cm][r]{}}
                 } \\
                 &
@@ -571,8 +576,8 @@
                 \fi
                 \CoverBottomOption{\authorizedatepre}{\@authorizedate}\\
                 \CoverBottomOption[4.05cm]{\committeechairpre}{\@committeechair} &
-                \CoverBottomOption{\reviewerpre}{\@reviewerA}\\
-                & \CoverBottomOption{\makebox[2.55cm]{}}{\@reviewerB}
+                \CoverBottomOption{\reviewerpre}{\@reviewerA}
+%                & \CoverBottomOption{\makebox[2.55cm]{}}{\@reviewerB}
             \end{tabular}
         \end{center}
     \end{minipage}
@@ -633,11 +638,11 @@
     %% Thesis name
     \AddToShipoutPictureBG*{
         \setlength{\unitlength}{1cm}
-        \put(0,18.6){
+        \put(0,17.5){
             \parbox{\paperwidth}{
                 \centering
                 \ifengineer
-                    \includegraphics[scale=0.32]{figures/defined/master-engineer.png}
+                    \includegraphics[scale=0.65]{figures/defined/master-engineer.png}
                 \else
                     \includegraphics[scale=0.32]{figures/defined/master.png}
                 \fi
@@ -646,39 +651,49 @@
     }
 
     %% Southeast University badge
-    \AddToShipoutPictureBG*{
-        \setlength{\unitlength}{1cm}
-        \put(17,27.5) {
-            \parbox{\paperwidth} {
-                \includegraphics[width=2.15cm]{figures/defined/seu-color-logo.png}
-            }
-        }
-    }
+%    \AddToShipoutPictureBG*{
+%        \setlength{\unitlength}{1cm}
+%        \put(17,27.5) {
+%            \parbox{\paperwidth} {
+%                \includegraphics[width=2.15cm]{figures/defined/seu-color-logo.png}
+%            }
+%        }
+%    }
 
     %% Thesis title
     \ifengineer
-        \vspace*{8.3cm}
+        \vspace*{9.7cm}
     \else
         \vspace*{8.6cm}
     \fi
     \begin{center}
         \linespread{1.25}
         \erhao\heiti\@title\\
-        \erhao\heiti\@subtitle
+%        \erhao\heiti\@subtitle
     \end{center}
 
     %% Engineering Thesis Type
     \ifengineer
-        \begin{center}
-            \sihao\bfseries
-            (\engthesistypepre\@engthesistype)
-        \end{center}
+%        \begin{center}
+%%            \sihao\bfseries
+%%            (\engthesistypepre\@engthesistype)
+%		 	{\sanhao\fontspec{华文中宋}
+%			(\engthesistypepre\@engthesistype)}
+%        \end{center}
+        \vspace*{0.6cm}
+			\begin{minipage}{16cm}
+				\begin{center}
+					%                \sihao\bfseries
+					{\sanhao\fontspec{华文中宋}
+						(\engthesistypepre\@engthesistype)}
+				\end{center}
+			\end{minipage}
     \else
     \fi
 
     %% Thesis author and advisor
     \ifengineer
-        \vspace*{0.1cm}
+        \vspace*{0.4cm}
     \else
         \vspace*{0.9cm}
     \fi
@@ -737,18 +752,18 @@
             \fi
             \CoverBottomOption{\authorizedatepre}{\@authorizedate}\\
             \CoverBottomOption[4.05cm]{\committeechairpre}{\@committeechair} &
-            \CoverBottomOption{\reviewerpre}{\@reviewerA}\\
-            & \CoverBottomOption{\makebox[2.55cm]{}}{\@reviewerB}
+            \CoverBottomOption{\reviewerpre}{\@reviewerA}
+%            & \CoverBottomOption{\makebox[2.55cm]{}}{\@reviewerB}
         \end{tabular}
     \end{center}
 
     %% Date
-    \vfill
+    \vspace*{0.5cm}
     \setcounter{page}{1} {
         \songti\sihao\centerline{\todaychn} \par
     }
 
-    %% Blanck page
+    %% Blank page
     \clearpage
     \thispagestyle{empty}
     \cleardoublepage
@@ -762,12 +777,12 @@
     \begin{center}
         \xiaochuhao
         \includegraphics[height=0.63in]{figures/defined/seu-text-logo.png}\\
-        \includegraphics[scale=0.35]{figures/defined/master.png}
+        \includegraphics[scale=0.65]{figures/defined/master-engineer.png}
 
         %% Thesis title
         \vspace{40pt}
         \erhao\heiti\@title\@thesisthanks\\
-        \erhao\heiti\@subtitle
+%        \erhao\heiti\@subtitle
 
         %% Author and advisor
         \vspace{120pt}
@@ -826,7 +841,7 @@
         {
             \fontsize{24pt}{28pt}\selectfont
             \MakeUppercase{\@titleeng}\\
-            \MakeUppercase{\@subtitleeng}
+%            \MakeUppercase{\@subtitleeng}
             \par
         }
 
@@ -839,7 +854,7 @@
                 A Thesis Submitted to
             }\\
             {\universitynameeng}\\
-            {For the Academic Degree of \@degreetypeen}\\
+            {For the Professional Degree of Master of Electronic and Information Engineering}\\
 
             %% Author
             {\vspace{0.5in}}
